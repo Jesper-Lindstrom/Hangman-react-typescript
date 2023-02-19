@@ -1,0 +1,16 @@
+.lettersContainer {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.letters {
+  display: flex;
+  justify-content: center;
+  border: 2px white solid;
+ 
+  padding: 0.5rem;
+  /* color: red; */
+  font-size: 35px;
+}
