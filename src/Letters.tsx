@@ -9,11 +9,22 @@ const letters:  string[] = [
  'Z', 'Å', 'Ä', 'Ö'
 ];
 
-export default function Letters () {
+interface LettersProps  {
+  onClick: (letter: string) => void;
+}
+
+export default function Letters (props: LettersProps) {
+  
 
   const numLettersPerRow = 15;
   const containerWidth = 900;
   const letterWidth = containerWidth / numLettersPerRow;
+
+  const handleLetterClick = (letter: string) => {
+    props.onClick(letter);
+  };
+
+
 
   return (
   <div className="lettersContainer" style={{ maxWidth: containerWidth}}>
@@ -22,6 +33,7 @@ export default function Letters () {
         className="letters" 
         key={letter}
         style={{ width: letterWidth, margin: '5px'}}
+        onClick={() => handleLetterClick(letter)}
         >
           {letter}
         </div>

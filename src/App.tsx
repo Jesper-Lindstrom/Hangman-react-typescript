@@ -5,6 +5,8 @@ import UpdateHangmanImage from './UpdateHangmanImage';
 
 function App() {
 
+  // const [guess, setGuess] = useState(0);
+
   const hangmanImages = [
     "/public/images/Hangman1.png",
     "/public/images/Hangman2.png",
@@ -14,7 +16,6 @@ function App() {
     "/public/images/Hangman6.png",
     "/public/images/Hangman7.png",
     "/public/images/Hangman8.png",
-  
   ]
 
   return (
@@ -22,7 +23,9 @@ function App() {
      <h1>Hänga Gubbe!</h1>
      <DisplayCurrentWord/>
      <UpdateHangmanImage image={hangmanImages[0]} alt="Hangman 1"/>
-     <Letters/>
+     <Letters onClick={function (letter: string): void {
+        throw new Error('Function not implemented.');
+      } }/>
    </div>
    
     )
