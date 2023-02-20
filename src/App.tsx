@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import DisplayCurrentWord from './DisplayCurrentWord';
 import Letters from './Letters';
@@ -5,7 +6,7 @@ import UpdateHangmanImage from './UpdateHangmanImage';
 
 function App() {
 
-  // const [guess, setGuess] = useState(0);
+  const [currentWord, setCurrentWord] = useState<string>('bäver');
 
   const hangmanImages = [
     "/public/images/Hangman1.png",
@@ -18,14 +19,21 @@ function App() {
     "/public/images/Hangman8.png",
   ]
 
+  function handleLetterClick(letter: string): void {
+    // if(currentWord.includes(letter)) {
+    //   setGreenLetters.push(letter);
+    // } else {
+    //   setRedLetters.push(letter)
+    // }
+    // om ordet innehåller bokstaven som vi trycker på, gör den grön. Annars röd.
+  }
+
   return (
    <div className="game">
      <h1>Hänga Gubbe!</h1>
-     <DisplayCurrentWord/>
+     <DisplayCurrentWord onNewWord={setCurrentWord}/>
      <UpdateHangmanImage image={hangmanImages[0]} alt="Hangman 1"/>
-     <Letters onClick={function (letter: string): void {
-        throw new Error('Function not implemented.');
-      } }/>
+     <Letters onClick={handleLetterClick} currentWord={currentWord}/>
    </div>
    
     )
