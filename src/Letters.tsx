@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import "./letters.css";
 
 const letters:  string[] = [
@@ -13,24 +12,20 @@ const letters:  string[] = [
 interface LettersProps  {
   onClick: (letter: string) => void;
   currentWord: string;
+  greenLetters: string[];
+  redLetters: string[];
 }
 
 export default function Letters (props: LettersProps) {
-  const { currentWord } = props; // Oklart
-  const [greenLetters, setGreenLetters] = useState<string[]>([]);
-  const [redLetters, setRedLetters] = useState<string[]>([]);
+  const { currentWord, greenLetters, redLetters } = props; // Oklart
+  
 
   const numLettersPerRow = 15;
   const containerWidth = 900;
   const letterWidth = containerWidth / numLettersPerRow;
 
   const handleLetterClick = (letter: string) => {
-    const isLetterInWord = letter.includes(letter);
-    if (isLetterInWord) {
-      setGreenLetters((greenLetters) => [...greenLetters, letter])
-    } else {
-      setRedLetters((redLetters) => [...redLetters, letter])
-    }
+    const isLetterInWord = currentWord.includes(letter);
     props.onClick(letter);
   };
 
@@ -42,7 +37,11 @@ export default function Letters (props: LettersProps) {
   <div 
     className="letters" 
     key={letter}
-    style={{ width: letterWidth, margin: '5px', backgroundColor: currentWord.includes(letter) ? 'green' : 'red'}}
+    style={{ 
+      width: letterWidth, 
+      margin: '5px', 
+      backgroundColor: greenLetters.includes(letter) ? 'green' : redLetters.includes(letter) ? 'red' : 'white' 
+    }}
     onClick={() => handleLetterClick(letter)}
   >
     {letter}

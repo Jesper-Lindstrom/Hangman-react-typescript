@@ -7,6 +7,8 @@ import UpdateHangmanImage from './UpdateHangmanImage';
 function App() {
 
   const [currentWord, setCurrentWord] = useState<string>('bäver');
+  const [greenLetters, setGreenLetters] = useState<string[]>([]);
+  const [redLetters, setRedLetters] = useState<string[]>([]);
 
   const hangmanImages = [
     "/public/images/Hangman1.png",
@@ -20,11 +22,11 @@ function App() {
   ]
 
   function handleLetterClick(letter: string): void {
-    // if(currentWord.includes(letter)) {
-    //   setGreenLetters.push(letter);
-    // } else {
-    //   setRedLetters.push(letter)
-    // }
+  if (currentWord.includes(letter)) {
+      setGreenLetters((greenLetters) => [...greenLetters, letter])
+    } else {
+      setRedLetters((redLetters) => [...redLetters, letter])
+    }
     // om ordet innehåller bokstaven som vi trycker på, gör den grön. Annars röd.
   }
 
@@ -33,7 +35,12 @@ function App() {
      <h1>Hänga Gubbe!</h1>
      <DisplayCurrentWord onNewWord={setCurrentWord}/>
      <UpdateHangmanImage image={hangmanImages[0]} alt="Hangman 1"/>
-     <Letters onClick={handleLetterClick} currentWord={currentWord}/>
+     <Letters 
+     onClick={handleLetterClick} 
+     currentWord={currentWord}
+     greenLetters={greenLetters}
+     redLetters={redLetters}
+     />
    </div>
    
     )
