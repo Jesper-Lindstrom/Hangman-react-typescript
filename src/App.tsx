@@ -6,9 +6,16 @@ import UpdateHangmanImage from './UpdateHangmanImage';
 
 function App() {
 
-  const [currentWord, setCurrentWord] = useState<string>('bäver');
+  const possibleWords = [
+    "bäver", "björn", "staket"
+  ]
+
+  
+
+  const [currentWord, setCurrentWord] = useState<string>(possibleWords[Math.floor(Math.random() * possibleWords.length)]);
   const [greenLetters, setGreenLetters] = useState<string[]>([]);
   const [redLetters, setRedLetters] = useState<string[]>([]);
+  const [showHangmanIndex, setShowHangManIndex] = useState<number>(0)
 
   const hangmanImages = [
     "/public/images/Hangman1.png",
@@ -26,14 +33,19 @@ function App() {
       setGreenLetters((greenLetters) => [...greenLetters, letter])
     } else {
       setRedLetters((redLetters) => [...redLetters, letter])
+      setShowHangManIndex(getNextHangManIndex());
     }
     // om ordet innehåller bokstaven som vi trycker på, gör den grön. Annars röd.
+  }
+
+  function getNextHangManIndex () {
+    return showHangmanIndex+1;
   }
 
   return (
    <div className="game">
      <h1>Hänga Gubbe!</h1>
-     <DisplayCurrentWord onNewWord={setCurrentWord}/>
+     <DisplayCurrentWord currentWord={currentWord}/>
      <UpdateHangmanImage image={hangmanImages[0]} alt="Hangman 1"/>
      <Letters 
      onClick={handleLetterClick} 

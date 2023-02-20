@@ -2,7 +2,7 @@
   position: absolute;
   display: flex;
   align-items: center;
-  margin-top: 5rem;
+  margin-bottom: 35rem;
   flex-direction: column;
 }
 
@@ -16,7 +16,7 @@ h2 {
   background-color: #242424;
 }
 
-.letter {
+.currentWordLetters {
   border: 1px solid white;
   font-size: 50px;
   padding: 1rem;
